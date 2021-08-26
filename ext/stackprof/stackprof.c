@@ -470,8 +470,8 @@ stackprof_record_sample_for_stack(int num, int64_t timestamp_delta)
     int i, n;
     VALUE prev_frame = Qnil;
 
-    printf("stackprof_record_sample_for_stack(%d, %d)\n", num, timestamp_delta);
-    fflush(stdout);
+    /* printf("stackprof_record_sample_for_stack(%d, %d)\n", num, timestamp_delta); */
+    /* fflush(stdout); */
 
     _stackprof.overall_samples++;
 
