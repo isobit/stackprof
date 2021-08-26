@@ -470,6 +470,9 @@ stackprof_record_sample_for_stack(int num, int64_t timestamp_delta)
     int i, n;
     VALUE prev_frame = Qnil;
 
+    printf("stackprof_record_sample_for_stack(%d, %d)\n", num, timestamp_delta);
+    fflush(stdout);
+
     _stackprof.overall_samples++;
 
     if (_stackprof.raw && num > 0) {
@@ -650,6 +653,8 @@ stackprof_gc_job_handler(void *data)
 static void
 stackprof_job_handler(void *data)
 {
+    /* printf("stackprof_job_handler() _stackprof.running=%d\n", _stackprof.running); */
+    /* fflush(stdout); */
     if (!_stackprof.running) return;
 
     stackprof_record_sample();
@@ -661,6 +666,9 @@ stackprof_signal_handler(int sig, siginfo_t *sinfo, void *ucontext)
     static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
     _stackprof.overall_signals++;
+
+    /* printf("stackprof_signal_handler"); */
+    /* fflush(stdout); */
 
     if (!_stackprof.running) return;
     if (!ruby_native_thread_p()) return;
